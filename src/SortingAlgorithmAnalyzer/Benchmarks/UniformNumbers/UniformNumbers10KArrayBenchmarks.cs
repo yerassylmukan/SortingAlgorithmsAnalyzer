@@ -38,7 +38,7 @@ public class UniformNumbers10KArrayBenchmarks
                 break;
         }
     }
-
+    
     [Benchmark]
     public void UniformNumbers10KInsertionSort()
     {
@@ -54,7 +54,7 @@ public class UniformNumbers10KArrayBenchmarks
             _array[j + 1] = key;
         }
     }
-
+    
     [Benchmark]
     public void UniformNumbers10KSelectionSort()
     {

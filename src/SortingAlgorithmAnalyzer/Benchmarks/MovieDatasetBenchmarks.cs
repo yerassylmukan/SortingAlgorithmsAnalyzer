@@ -5,8 +5,8 @@ namespace SortingAlgorithmAnalyzer.Benchmarks;
 
 public class MovieDatasetBenchmarks
 {
-    private float[] _array;
     private List<float> _originalDataset;
+    private float[] _array;
 
     [GlobalSetup]
     public async Task Setup()
@@ -23,7 +23,7 @@ public class MovieDatasetBenchmarks
     }
     
     [Benchmark]
-    public void BubbleSort()
+    public void MovieDatasetBubbleSort()
     {
         bool swapped;
         for (int i = 0; i < _array.Length - 1; i++)
@@ -43,7 +43,7 @@ public class MovieDatasetBenchmarks
     }
 
     [Benchmark]
-    public void InsertionSort()
+    public void MovieDatasetInsertionSort()
     {
         for (int i = 1; i < _array.Length; i++)
         {
@@ -59,7 +59,7 @@ public class MovieDatasetBenchmarks
     }
 
     [Benchmark]
-    public void SelectionSort()
+    public void MovieDatasetSelectionSort()
     {
         for (int i = 0; i < _array.Length - 1; i++)
         {
@@ -74,7 +74,7 @@ public class MovieDatasetBenchmarks
     }
 
     [Benchmark]
-    public void MergeSort()
+    public void MovieDatasetMergeSort()
     {
         MergeSortRecursive(0, _array.Length - 1);
     }
@@ -95,30 +95,32 @@ public class MovieDatasetBenchmarks
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
-        int[] leftArray = new int[n1];
-        int[] rightArray = new int[n2];
+        float[] leftArray = new float[n1];
+        float[] rightArray = new float[n2];
 
-        Array.Copy(_array, left, leftArray, 0, n1);
-        Array.Copy(_array, mid + 1, rightArray, 0, n2);
+        for (int i = 0; i < n1; i++)
+            leftArray[i] = _array[left + i];
+        for (int j = 0; j < n2; j++)
+            rightArray[j] = _array[mid + 1 + j];
 
-        int i = 0, j = 0, k = left;
-        while (i < n1 && j < n2)
+        int iLeft = 0, iRight = 0, k = left;
+        while (iLeft < n1 && iRight < n2)
         {
-            if (leftArray[i] <= rightArray[j])
-                _array[k++] = leftArray[i++];
+            if (leftArray[iLeft] <= rightArray[iRight])
+                _array[k++] = leftArray[iLeft++];
             else
-                _array[k++] = rightArray[j++];
+                _array[k++] = rightArray[iRight++];
         }
 
-        while (i < n1)
-            _array[k++] = leftArray[i++];
+        while (iLeft < n1)
+            _array[k++] = leftArray[iLeft++];
 
-        while (j < n2)
-            _array[k++] = rightArray[j++];
+        while (iRight < n2)
+            _array[k++] = rightArray[iRight++];
     }
 
     [Benchmark]
-    public void QuickSort()
+    public void MovieDatasetQuickSort()
     {
         QuickSortRecursive(0, _array.Length - 1);
     }
@@ -135,7 +137,7 @@ public class MovieDatasetBenchmarks
 
     private int Partition(int low, int high)
     {
-        float pivot = _array[high];
+        double pivot = _array[high];
         int i = low - 1;
         for (int j = low; j < high; j++)
         {

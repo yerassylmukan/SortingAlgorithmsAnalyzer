@@ -19,56 +19,56 @@ public class BimodalNumbers500KArrayBenchmarks
         _array = _originalArray.ToArray();
     }
     
-    [Benchmark]
-    public void BimodalNumbers500KBubbleSort()
-    {
-        bool swapped;
-        for (int i = 0; i < _array.Length - 1; i++)
-        {
-            swapped = false;
-            for (int j = 0; j < _array.Length - 1 - i; j++)
-            {
-                if (_array[j] > _array[j + 1])
-                {
-                    Swap(j, j + 1);
-                    swapped = true;
-                }
-            }
-            if (!swapped)
-                break;
-        }
-    }
-
-    [Benchmark]
-    public void BimodalNumbers500KInsertionSort()
-    {
-        for (int i = 1; i < _array.Length; i++)
-        {
-            double key = _array[i];
-            int j = i - 1;
-            while (j >= 0 && _array[j] > key)
-            {
-                _array[j + 1] = _array[j];
-                j--;
-            }
-            _array[j + 1] = key;
-        }
-    }
-
-    [Benchmark]
-    public void BimodalNumbers500KSelectionSort()
-    {
-        for (int i = 0; i < _array.Length - 1; i++)
-        {
-            int minIndex = i;
-            for (int j = i + 1; j < _array.Length; j++)
-            {
-                if (_array[j] < _array[minIndex])
-                    minIndex = j;
-            }
-            Swap(i, minIndex);
-        }
-    }
+    // [Benchmark]
+    // public void BimodalNumbers500KBubbleSort()
+    // {
+    //     bool swapped;
+    //     for (int i = 0; i < _array.Length - 1; i++)
+    //     {
+    //         swapped = false;
+    //         for (int j = 0; j < _array.Length - 1 - i; j++)
+    //         {
+    //             if (_array[j] > _array[j + 1])
+    //             {
+    //                 Swap(j, j + 1);
+    //                 swapped = true;
+    //             }
+    //         }
+    //         if (!swapped)
+    //             break;
+    //     }
+    // }
+    //
+    // [Benchmark]
+    // public void BimodalNumbers500KInsertionSort()
+    // {
+    //     for (int i = 1; i < _array.Length; i++)
+    //     {
+    //         double key = _array[i];
+    //         int j = i - 1;
+    //         while (j >= 0 && _array[j] > key)
+    //         {
+    //             _array[j + 1] = _array[j];
+    //             j--;
+    //         }
+    //         _array[j + 1] = key;
+    //     }
+    // }
+    //
+    // [Benchmark]
+    // public void BimodalNumbers500KSelectionSort()
+    // {
+    //     for (int i = 0; i < _array.Length - 1; i++)
+    //     {
+    //         int minIndex = i;
+    //         for (int j = i + 1; j < _array.Length; j++)
+    //         {
+    //             if (_array[j] < _array[minIndex])
+    //                 minIndex = j;
+    //         }
+    //         Swap(i, minIndex);
+    //     }
+    // }
 
     [Benchmark]
     public void BimodalNumbers500KMergeSort()

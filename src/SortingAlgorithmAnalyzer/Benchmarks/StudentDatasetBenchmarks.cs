@@ -3,6 +3,7 @@ using SortingAlgorithmAnalyzer.Mappers;
 
 namespace SortingAlgorithmAnalyzer.Benchmarks;
 
+[Config(typeof(CustomConfig))]
 public class StudentDatasetBenchmarks
 {
     private List<int> _originalDataset;

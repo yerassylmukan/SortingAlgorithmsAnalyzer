@@ -2,56 +2,83 @@
 {
     private static readonly Random _random = new();
 
-    public static List<double> GenerateUniformNumbers(int size, double min, double max)
-    {
-        var numbers = new List<double>();
-
-        for (var i = 0; i < size; i++) numbers.Add(_random.NextDouble() * (max - min) + min);
-
-        return numbers;
-    }
-
-    public static List<double> GenerateNormalNumbers(int size, double mean, double stdDev)
+    public static List<double> GenerateUniformNumbers(int size, double a, double b)
     {
         var numbers = new List<double>();
 
         for (var i = 0; i < size; i++)
         {
-            var u1 = _random.NextDouble();
-            var u2 = _random.NextDouble();
-            var z = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
-            numbers.Add(mean + z * stdDev);
+            
+            double randomNumber = a + (b - a) * _random.NextDouble();
+            numbers.Add(randomNumber);
         }
 
         return numbers;
     }
 
-    public static List<double> GenerateExponentialNumbers(int size, double lambda)
+    public static List<double> GenerateNormalNumbers(int size, double mean, double standardDeviation)
     {
         var numbers = new List<double>();
 
         for (var i = 0; i < size; i++)
         {
-            var expRandom = -Math.Log(1.0 - _random.NextDouble()) / lambda;
-            numbers.Add(expRandom);
+            double u1 = _random.NextDouble();
+            double u2 = _random.NextDouble();
+            double z0 = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
+            double normalNumber = mean + z0 * standardDeviation;
+            numbers.Add(normalNumber);
         }
 
         return numbers;
     }
 
-    public static List<double> GenerateBimodalNumbers(int size, double mean1, double mean2, double stdDev)
+    public static List<double> GenerateExponentialNumbers(int size, double mean)
     {
-        var numbers = new List<double>();
+        List<double> numbers = new List<double>();
+        double lambda = 1.0 / mean;
 
-        for (var i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
-            var mean = _random.NextDouble() < 0.5 ? mean1 : mean2;
-            var u1 = _random.NextDouble();
-            var u2 = _random.NextDouble();
-            var z = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
-            numbers.Add(mean + z * stdDev);
+            double u = _random.NextDouble();
+
+            double exponentialNumber = -Math.Log(1 - u) / lambda;
+            numbers.Add(exponentialNumber);
         }
 
         return numbers;
+    }
+
+    public static List<double> GenerateBimodalNumbers(int size, double mean1, double stdDev1, double mean2, double stdDev2)
+    {
+        List<double> numbers = new List<double>();
+
+        for (int i = 0; i < size; i++)
+        {
+            bool useFirstDistribution = _random.NextDouble() > 0.5;
+
+            double normalNumber;
+
+            if (useFirstDistribution)
+            {
+                normalNumber = GenerateNormal(mean1, stdDev1);
+            }
+            else
+            {
+                normalNumber = GenerateNormal(mean2, stdDev2);
+            }
+
+            numbers.Add(normalNumber);
+        }
+
+        return numbers;
+    }
+
+    private static double GenerateNormal(double mean, double standardDeviation)
+    {
+        double u1 = _random.NextDouble();
+        double u2 = _random.NextDouble();
+        double z0 = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
+
+        return mean + z0 * standardDeviation;
     }
 }

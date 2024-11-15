@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.NormalNumbersBenchmarks;
 
+[Config(typeof(CustomConfig))]
 public class NormalNumbers10KArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class NormalNumbers10KArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateNormalNumbers(10_000, 50, 10);
+        _originalArray = DatasetGenerator.GenerateNormalNumbers(10000, 500, 100);
     }
     
     [IterationSetup]

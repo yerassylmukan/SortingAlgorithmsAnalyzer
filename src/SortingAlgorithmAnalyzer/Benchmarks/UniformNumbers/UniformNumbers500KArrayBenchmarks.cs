@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.UniformNumbers;
 
+[Config(typeof(CustomConfig))]
 public class UniformNumbers500KArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class UniformNumbers500KArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateUniformNumbers(500_000, 0, 1000);
+        _originalArray = DatasetGenerator.GenerateUniformNumbers(500000, 0, 1000);
     }
     
     [IterationSetup]
@@ -18,57 +19,6 @@ public class UniformNumbers500KArrayBenchmarks
     {
         _array = _originalArray.ToArray();
     }
-    
-    // [Benchmark]
-    // public void UniformNumbers500KBubbleSort()
-    // {
-    //     bool swapped;
-    //     for (int i = 0; i < _array.Length - 1; i++)
-    //     {
-    //         swapped = false;
-    //         for (int j = 0; j < _array.Length - 1 - i; j++)
-    //         {
-    //             if (_array[j] > _array[j + 1])
-    //             {
-    //                 Swap(j, j + 1);
-    //                 swapped = true;
-    //             }
-    //         }
-    //         if (!swapped)
-    //             break;
-    //     }
-    // }
-    //
-    // [Benchmark]
-    // public void UniformNumbers500KInsertionSort()
-    // {
-    //     for (int i = 1; i < _array.Length; i++)
-    //     {
-    //         double key = _array[i];
-    //         int j = i - 1;
-    //         while (j >= 0 && _array[j] > key)
-    //         {
-    //             _array[j + 1] = _array[j];
-    //             j--;
-    //         }
-    //         _array[j + 1] = key;
-    //     }
-    // }
-    //
-    // [Benchmark]
-    // public void UniformNumbers500KSelectionSort()
-    // {
-    //     for (int i = 0; i < _array.Length - 1; i++)
-    //     {
-    //         int minIndex = i;
-    //         for (int j = i + 1; j < _array.Length; j++)
-    //         {
-    //             if (_array[j] < _array[minIndex])
-    //                 minIndex = j;
-    //         }
-    //         Swap(i, minIndex);
-    //     }
-    // }
 
     [Benchmark]
     public void UniformNumbers500KMergeSort()

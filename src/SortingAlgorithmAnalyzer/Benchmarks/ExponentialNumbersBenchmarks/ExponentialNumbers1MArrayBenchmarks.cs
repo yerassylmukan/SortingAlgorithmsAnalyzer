@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.ExponentialNumbersBenchmarks;
 
+[Config(typeof(CustomConfig))]
 public class ExponentialNumbers1MArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class ExponentialNumbers1MArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateExponentialNumbers(1_000_000, 1);
+        _originalArray = DatasetGenerator.GenerateExponentialNumbers(1000000, 20);
     }
     
     [IterationSetup]
@@ -18,57 +19,6 @@ public class ExponentialNumbers1MArrayBenchmarks
     {
         _array = _originalArray.ToArray();
     }
-    
-    // [Benchmark]
-    // public void ExponentialNumbers1MBubbleSort()
-    // {
-    //     bool swapped;
-    //     for (int i = 0; i < _array.Length - 1; i++)
-    //     {
-    //         swapped = false;
-    //         for (int j = 0; j < _array.Length - 1 - i; j++)
-    //         {
-    //             if (_array[j] > _array[j + 1])
-    //             {
-    //                 Swap(j, j + 1);
-    //                 swapped = true;
-    //             }
-    //         }
-    //         if (!swapped)
-    //             break;
-    //     }
-    // }
-    //
-    // [Benchmark]
-    // public void ExponentialNumbers1MInsertionSort()
-    // {
-    //     for (int i = 1; i < _array.Length; i++)
-    //     {
-    //         double key = _array[i];
-    //         int j = i - 1;
-    //         while (j >= 0 && _array[j] > key)
-    //         {
-    //             _array[j + 1] = _array[j];
-    //             j--;
-    //         }
-    //         _array[j + 1] = key;
-    //     }
-    // }
-    //
-    // [Benchmark]
-    // public void ExponentialNumbers1MSelectionSort()
-    // {
-    //     for (int i = 0; i < _array.Length - 1; i++)
-    //     {
-    //         int minIndex = i;
-    //         for (int j = i + 1; j < _array.Length; j++)
-    //         {
-    //             if (_array[j] < _array[minIndex])
-    //                 minIndex = j;
-    //         }
-    //         Swap(i, minIndex);
-    //     }
-    // }
 
     [Benchmark]
     public void ExponentialNumbers1MMergeSort()

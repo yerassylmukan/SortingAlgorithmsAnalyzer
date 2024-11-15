@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.ExponentialNumbersBenchmarks;
 
+[Config(typeof(CustomConfig))]
 public class ExponentialNumbers10KArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class ExponentialNumbers10KArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateExponentialNumbers(10_000, 0.1);
+        _originalArray = DatasetGenerator.GenerateExponentialNumbers(10000, 20);
     }
     
     [IterationSetup]

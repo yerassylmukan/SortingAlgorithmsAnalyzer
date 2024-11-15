@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.BimodalNumbersBenchmarks;
 
+[Config(typeof(CustomConfig))]
 public class BimodalNumbers1MArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class BimodalNumbers1MArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateBimodalNumbers(1_000_000, 100, 150, 15);
+        _originalArray = DatasetGenerator.GenerateBimodalNumbers(1000000, 100, 50, 900, 100);
     }
     
     [IterationSetup]
@@ -18,57 +19,6 @@ public class BimodalNumbers1MArrayBenchmarks
     {
         _array = _originalArray.ToArray();
     }
-    
-    // [Benchmark]
-    // public void BimodalNumbers1MBubbleSort()
-    // {
-    //     bool swapped;
-    //     for (int i = 0; i < _array.Length - 1; i++)
-    //     {
-    //         swapped = false;
-    //         for (int j = 0; j < _array.Length - 1 - i; j++)
-    //         {
-    //             if (_array[j] > _array[j + 1])
-    //             {
-    //                 Swap(j, j + 1);
-    //                 swapped = true;
-    //             }
-    //         }
-    //         if (!swapped)
-    //             break;
-    //     }
-    // }
-    //
-    // [Benchmark]
-    // public void BimodalNumbers1MInsertionSort()
-    // {
-    //     for (int i = 1; i < _array.Length; i++)
-    //     {
-    //         double key = _array[i];
-    //         int j = i - 1;
-    //         while (j >= 0 && _array[j] > key)
-    //         {
-    //             _array[j + 1] = _array[j];
-    //             j--;
-    //         }
-    //         _array[j + 1] = key;
-    //     }
-    // }
-    //
-    // [Benchmark]
-    // public void BimodalNumbers1MSelectionSort()
-    // {
-    //     for (int i = 0; i < _array.Length - 1; i++)
-    //     {
-    //         int minIndex = i;
-    //         for (int j = i + 1; j < _array.Length; j++)
-    //         {
-    //             if (_array[j] < _array[minIndex])
-    //                 minIndex = j;
-    //         }
-    //         Swap(i, minIndex);
-    //     }
-    // }
 
     [Benchmark]
     public void BimodalNumbers1MMergeSort()

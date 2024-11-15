@@ -20,6 +20,7 @@ bld/
 *.dll.config
 **/bin/
 **/obj/
+src/SortingAlgorithmAnalyzer/BenchmarkDotNet.Artifacts/
 
 # Mac files
 .DS_Store

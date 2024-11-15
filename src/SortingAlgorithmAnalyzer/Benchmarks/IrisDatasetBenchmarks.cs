@@ -1,8 +1,10 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
 using SortingAlgorithmAnalyzer.Mappers;
 
 namespace SortingAlgorithmAnalyzer.Benchmarks;
 
+[Config(typeof(CustomConfig))]
 public class IrisDatasetBenchmarks
 {
     private List<float> _originalDataset;

@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.BimodalNumbersBenchmarks;
 
+[Config(typeof(CustomConfig))]
 public class BimodalNumbers10KArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class BimodalNumbers10KArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateBimodalNumbers(10_000, 30, 70, 5);
+        _originalArray = DatasetGenerator.GenerateBimodalNumbers(10000, 100, 50, 900, 100);
     }
     
     [IterationSetup]

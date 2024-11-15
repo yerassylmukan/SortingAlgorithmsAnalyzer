@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithmAnalyzer.Benchmarks.UniformNumbers;
 
+[Config(typeof(CustomConfig))]
 public class UniformNumbers10KArrayBenchmarks
 {
     private List<double> _originalArray;
@@ -10,7 +11,7 @@ public class UniformNumbers10KArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateUniformNumbers(10_000, 0, 100);
+        _originalArray = DatasetGenerator.GenerateUniformNumbers(10000, 0, 1000);
     }
     
     [IterationSetup]

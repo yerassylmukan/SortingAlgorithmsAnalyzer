@@ -3,6 +3,7 @@ using SortingAlgorithmAnalyzer.Mappers;
 
 namespace SortingAlgorithmAnalyzer.Benchmarks;
 
+[Config(typeof(CustomConfig))]
 public class MovieDatasetBenchmarks
 {
     private List<float> _originalDataset;

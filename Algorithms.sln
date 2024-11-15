@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F719010F-BD23-4138-B6A1-160E17C77D8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithmAnalyzer", "src\SortingAlgorithmAnalyzer\SortingAlgorithmAnalyzer.csproj", "{E9FB0A18-9A04-4F0B-B58B-19B18E836E79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithmsAnalyzer", "src\SortingAlgorithmsAnalyzer\SortingAlgorithmsAnalyzer.csproj", "{E9FB0A18-9A04-4F0B-B58B-19B18E836E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

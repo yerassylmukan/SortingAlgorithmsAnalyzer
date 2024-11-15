@@ -15,12 +15,13 @@ public class StudentDatasetBenchmarks
         var databaseService = new DatabaseService();
         var studentDatas = await databaseService.GetModelsAsync("SELECT * FROM student", StudentMapper.MapToMovieModel);
         _originalDataset = studentDatas.Select(i => i.MathScore).ToList();
+        _array = new int[_originalDataset.Count];
     }
-
+    
     [IterationSetup]
     public void IterationSetup()
     {
-        _array = _originalDataset.ToArray();
+        Array.Copy(_originalDataset.ToArray(), _array, _originalDataset.Count);
     }
     
     [Benchmark]

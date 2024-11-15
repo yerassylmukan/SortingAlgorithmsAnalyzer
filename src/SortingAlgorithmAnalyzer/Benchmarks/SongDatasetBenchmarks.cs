@@ -15,12 +15,13 @@ public class SongDatasetBenchmarks
         var databaseService = new DatabaseService();
         var songDatas = await databaseService.GetModelsAsync("SELECT * FROM song", SongMapper.MapToSongModel);
         _originalDataset = songDatas.Select(i => i.Popularity).ToList();
+        _array = new int[_originalDataset.Count];
     }
-
+    
     [IterationSetup]
     public void IterationSetup()
     {
-        _array = _originalDataset.ToArray();
+        Array.Copy(_originalDataset.ToArray(), _array, _originalDataset.Count);
     }
 
     [Benchmark]

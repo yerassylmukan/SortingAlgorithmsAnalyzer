@@ -12,12 +12,13 @@ public class ExponentialNumbers10KArrayBenchmarks
     public void Setup()
     {
         _originalArray = DatasetGenerator.GenerateExponentialNumbers(10000, 20);
+        _array = new double[_originalArray.Count];
     }
     
     [IterationSetup]
     public void IterationSetup()
     {
-        _array = _originalArray.ToArray();
+        Array.Copy(_originalArray.ToArray(), _array, _originalArray.Count);
     }
     
     [Benchmark]

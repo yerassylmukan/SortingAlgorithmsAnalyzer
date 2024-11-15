@@ -16,12 +16,13 @@ public class IrisDatasetBenchmarks
         var databaseService = new DatabaseService();
         var irisDatas = await databaseService.GetModelsAsync("SELECT * FROM iris", IrisMapper.MapToIrisModel);
         _originalDataset = irisDatas.Select(i => i.PetalLengthCm).ToList();
+        _array = new float[_originalDataset.Count];
     }
-
+    
     [IterationSetup]
     public void IterationSetup()
     {
-        _array = _originalDataset.ToArray();
+        Array.Copy(_originalDataset.ToArray(), _array, _originalDataset.Count);
     }
     
     [Benchmark]

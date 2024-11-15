@@ -15,12 +15,13 @@ public class WineDatasetBenchmarks
         var databaseService = new DatabaseService();
         var wineDatas = await databaseService.GetModelsAsync("SELECT * FROM wine", WineMapper.MapToWineModel);
         _originalDataset = wineDatas.Select(i => i.Quality).ToList();
+        _array = new int[_originalDataset.Count];
     }
-
+    
     [IterationSetup]
     public void IterationSetup()
     {
-        _array = _originalDataset.ToArray();
+        Array.Copy(_originalDataset.ToArray(), _array, _originalDataset.Count);
     }
     
     [Benchmark]

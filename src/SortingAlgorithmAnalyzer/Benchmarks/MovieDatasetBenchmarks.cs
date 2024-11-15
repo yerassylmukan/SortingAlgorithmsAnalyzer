@@ -15,12 +15,13 @@ public class MovieDatasetBenchmarks
         var databaseService = new DatabaseService();
         var movieDatas = await databaseService.GetModelsAsync("SELECT * FROM movie", MovieMapper.MapToMovieModel);
         _originalDataset = movieDatas.Select(i => i.Popularity).ToList();
+        _array = new float[_originalDataset.Count];
     }
-
+    
     [IterationSetup]
     public void IterationSetup()
     {
-        _array = _originalDataset.ToArray();
+        Array.Copy(_originalDataset.ToArray(), _array, _originalDataset.Count);
     }
     
     [Benchmark]

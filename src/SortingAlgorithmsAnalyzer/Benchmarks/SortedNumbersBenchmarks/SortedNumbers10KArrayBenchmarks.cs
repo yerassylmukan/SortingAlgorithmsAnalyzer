@@ -1,9 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace SortingAlgorithmsAnalyzer.Benchmarks.UniformNumbers;
+namespace SortingAlgorithmsAnalyzer.Benchmarks.SortedNumbersBenchmarks;
 
 [Config(typeof(CustomConfig))]
-public class UniformNumbers10KArrayBenchmarks
+public class SortedNumbers10KArrayBenchmarks
 {
     private double[] _array;
     private List<double> _originalArray;
@@ -11,7 +11,7 @@ public class UniformNumbers10KArrayBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _originalArray = DatasetGenerator.GenerateUniformNumbers(10000, 0, 1000);
+        _originalArray = DatasetGenerator.GenerateSortedNumbers(10000);
         _array = new double[_originalArray.Count];
     }
 
@@ -22,31 +22,31 @@ public class UniformNumbers10KArrayBenchmarks
     }
 
     [Benchmark]
-    public void UniformNumbers10KBubbleSort()
+    public void SortedNumbers10KBubbleSort()
     {
         SortingAlgorithms.BubbleSort(_array);
     }
 
     [Benchmark]
-    public void UniformNumbers10KInsertionSort()
+    public void SortedNumbers10KInsertionSort()
     {
         SortingAlgorithms.InsertionSort(_array);
     }
 
     [Benchmark]
-    public void UniformNumbers10KSelectionSort()
+    public void SortedNumbers10KSelectionSort()
     {
         SortingAlgorithms.SelectionSort(_array);
     }
 
     [Benchmark]
-    public void UniformNumbers10KMergeSort()
+    public void SortedNumbers10KMergeSort()
     {
         SortingAlgorithms.MergeSort(_array);
     }
 
     [Benchmark]
-    public void UniformNumbers10KQuickSort()
+    public void SortedNumbers10KQuickSort()
     {
         SortingAlgorithms.QuickSort(_array);
     }

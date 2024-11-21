@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Reports;
-using Perfolizer.Metrology;
+using Perfolizer.Horology;
 
 namespace SortingAlgorithmsAnalyzer;
 
@@ -8,8 +8,8 @@ public class CustomConfig : ManualConfig
 {
     public CustomConfig()
     {
-        SummaryStyle summaryStyle = SummaryStyle.Default
-            .WithTimeUnit(Perfolizer.Horology.TimeUnit.Millisecond);
-        this.SummaryStyle = summaryStyle;
+        var summaryStyle = SummaryStyle.Default
+            .WithTimeUnit(TimeUnit.Millisecond);
+        SummaryStyle = summaryStyle;
     }
 }

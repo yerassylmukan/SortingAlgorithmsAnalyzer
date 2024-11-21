@@ -1,14 +1,15 @@
 ﻿using BenchmarkDotNet.Running;
 using SortingAlgorithmsAnalyzer.Benchmarks;
 using SortingAlgorithmsAnalyzer.Benchmarks.UniformNumbers;
-using SortingAlgorithmsAnalyzer.Benchmarks.NormalNumbersBenchmarks;
-using SortingAlgorithmsAnalyzer.Benchmarks.ExponentialNumbersBenchmarks;
-using SortingAlgorithmsAnalyzer.Benchmarks.BimodalNumbersBenchmarks;
+using SortingAlgorithmsAnalyzer.Benchmarks.SortedNumbersBenchmarks;
+using SortingAlgorithmsAnalyzer.Benchmarks.ReverseSortedNumbersBenchmarks;
 
 namespace SortingAlgorithmsAnalyzer;
 
 public class Program
 {
+    private static double[] _array = new double[100000];
+
     public static async Task Main(string[] args)
     {
         // BenchmarkRunner.Run<IrisDatasetBenchmarks>();
@@ -22,19 +23,14 @@ public class Program
         // BenchmarkRunner.Run<UniformNumbers500KArrayBenchmarks>();
         // BenchmarkRunner.Run<UniformNumbers1MArrayBenchmarks>();
         //
-        // BenchmarkRunner.Run<NormalNumbers10KArrayBenchmarks>();
-        // BenchmarkRunner.Run<NormalNumbers100KArrayBenchmarks>();
-        // BenchmarkRunner.Run<NormalNumbers500KArrayBenchmarks>();
-        // BenchmarkRunner.Run<NormalNumbers1MArrayBenchmarks>();
+        // BenchmarkRunner.Run<SortedNumbers10KArrayBenchmarks>();
+        // BenchmarkRunner.Run<SortedNumbers100KArrayBenchmarks>();
+        // BenchmarkRunner.Run<SortedNumbers500KArrayBenchmarks>();
+        // BenchmarkRunner.Run<SortedNumbers1MArrayBenchmarks>();
         //
-        // BenchmarkRunner.Run<ExponentialNumbers10KArrayBenchmarks>();
-        // BenchmarkRunner.Run<ExponentialNumbers100KArrayBenchmarks>();
-        // BenchmarkRunner.Run<ExponentialNumbers500KArrayBenchmarks>();
-        // BenchmarkRunner.Run<ExponentialNumbers1MArrayBenchmarks>();
-        //
-        // BenchmarkRunner.Run<BimodalNumbers10KArrayBenchmarks>();
-        // BenchmarkRunner.Run<BimodalNumbers100KArrayBenchmarks>();
-        // BenchmarkRunner.Run<BimodalNumbers500KArrayBenchmarks>();
-        BenchmarkRunner.Run<BimodalNumbers1MArrayBenchmarks>();
+        // BenchmarkRunner.Run<ReverseSortedNumbers10KArrayBenchmarks>();
+        // BenchmarkRunner.Run<ReverseSortedNumbers100KArrayBenchmarks>();
+        // BenchmarkRunner.Run<ReverseSortedNumbers500KArrayBenchmarks>();
+        BenchmarkRunner.Run<ReverseSortedNumbers1MArrayBenchmarks>();
     }
 }

@@ -8,64 +8,46 @@
 
         for (var i = 0; i < size; i++)
         {
-            
-            double randomNumber = a + (b - a) * _random.NextDouble();
+            var randomNumber = a + (b - a) * _random.NextDouble();
             numbers.Add(randomNumber);
         }
 
         return numbers;
     }
 
-    public static List<double> GenerateNormalNumbers(int size, double mean, double standardDeviation)
+    public static List<double> GenerateSortedNumbers(int size)
+    {
+        var numbers = new List<double>();
+
+        for (var i = 1; i <= size; i++) numbers.Add(i);
+
+        return numbers;
+    }
+
+    public static List<double> GenerateReverseSortedNumbers(int size)
+    {
+        var numbers = new List<double>();
+
+        for (var i = size; i >= 1; i--) numbers.Add(i);
+
+        return numbers;
+    }
+
+    public static List<double> GenerateBimodalNumbers(int size, double mean1, double stdDev1, double mean2,
+        double stdDev2)
     {
         var numbers = new List<double>();
 
         for (var i = 0; i < size; i++)
         {
-            double u1 = _random.NextDouble();
-            double u2 = _random.NextDouble();
-            double z0 = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
-            double normalNumber = mean + z0 * standardDeviation;
-            numbers.Add(normalNumber);
-        }
-
-        return numbers;
-    }
-
-    public static List<double> GenerateExponentialNumbers(int size, double mean)
-    {
-        List<double> numbers = new List<double>();
-        double lambda = 1.0 / mean;
-
-        for (int i = 0; i < size; i++)
-        {
-            double u = _random.NextDouble();
-
-            double exponentialNumber = -Math.Log(1 - u) / lambda;
-            numbers.Add(exponentialNumber);
-        }
-
-        return numbers;
-    }
-
-    public static List<double> GenerateBimodalNumbers(int size, double mean1, double stdDev1, double mean2, double stdDev2)
-    {
-        List<double> numbers = new List<double>();
-
-        for (int i = 0; i < size; i++)
-        {
-            bool useFirstDistribution = _random.NextDouble() > 0.5;
+            var useFirstDistribution = _random.NextDouble() > 0.5;
 
             double normalNumber;
 
             if (useFirstDistribution)
-            {
                 normalNumber = GenerateNormal(mean1, stdDev1);
-            }
             else
-            {
                 normalNumber = GenerateNormal(mean2, stdDev2);
-            }
 
             numbers.Add(normalNumber);
         }
@@ -75,9 +57,9 @@
 
     private static double GenerateNormal(double mean, double standardDeviation)
     {
-        double u1 = _random.NextDouble();
-        double u2 = _random.NextDouble();
-        double z0 = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
+        var u1 = _random.NextDouble();
+        var u2 = _random.NextDouble();
+        var z0 = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Cos(2.0 * Math.PI * u2);
 
         return mean + z0 * standardDeviation;
     }

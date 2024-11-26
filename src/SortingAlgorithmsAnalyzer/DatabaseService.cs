@@ -18,7 +18,10 @@ public class DatabaseService
             using (var command = new NpgsqlCommand(query, connection))
             using (var reader = await command.ExecuteReaderAsync())
             {
-                while (await reader.ReadAsync()) results.Add(map(reader));
+                while (await reader.ReadAsync())
+                {
+                    results.Add(map(reader));
+                }
             }
         }
 

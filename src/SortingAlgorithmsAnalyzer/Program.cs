@@ -8,9 +8,7 @@ namespace SortingAlgorithmsAnalyzer;
 
 public class Program
 {
-    private static double[] _array = new double[100000];
-
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         // BenchmarkRunner.Run<IrisDatasetBenchmarks>();
         // BenchmarkRunner.Run<StudentDatasetBenchmarks>();
